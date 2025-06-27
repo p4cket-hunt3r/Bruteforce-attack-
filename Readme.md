@@ -19,8 +19,8 @@ python required ⛓️‍💥
 For Termux:
 
 This tool not suitable for termux 
-so check out my page (github)There 
-is a new repository name : bruteforce 2 
+so check out my page (github.com/p4cket-hunt3r)There 
+is a new repository name : bruteforce 2 (only for termux)
 
 
 ---
@@ -73,13 +73,6 @@ https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 ---
 
-Termux:
-
-```
-chmod +x ssh_bruteforce_tool.py
-python ssh_bruteforce_tool.py
-
-```
 linux:
 
 Give permission if needed
