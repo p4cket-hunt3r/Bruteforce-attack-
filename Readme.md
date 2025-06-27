@@ -21,10 +21,24 @@ This tool will automatically install all required dependencies before execution.
 If the automatic installation fails, please follow the steps below to install manually:
 ```
 
-pkg install python rust -y
+pkg install rust clang python python-pip -y
 pip install --upgrade pip setuptools wheel
 
 ```
+
+**Then**
+
+```
+
+
+pip install --upgrade pip setuptools wheel
+pip install cryptography
+pip install paramiko
+
+
+```
+
+
 ---
 For linux:
 
@@ -33,14 +47,41 @@ If the automatic installation fails, please follow the steps below to install ma
 
 ```
 
-sudo apt install python3 python3-pip rustc -y
+sudo apt update
+sudo apt install build-essential libssl-dev python3-dev rustc -y
 pip install --upgrade pip setuptools wheel
+pip install cryptography
+pip install paramiko
 
 ```
 ---
 
 windows:
 install automatically ✅
+
+manually installation:
+
+
+```
+
+pip install --upgrade pip setuptools wheel
+pip install cryptography
+pip install paramiko
+
+
+
+```
+
+**or**
+
+
+Download and install from:
+
+```
+https://visualstudio.microsoft.com/visual-cpp-build-tools/
+
+```
+
 
 ---
 
