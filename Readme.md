@@ -13,6 +13,8 @@ Created for **ethical hacking learning**, **red team practice**, and **interview
 ---
 ## 📜 Usage Instructions
 python required ⛓️‍💥
+
+
 For Termux:
 
 This tool will automatically install all required dependencies before execution.
@@ -82,7 +84,11 @@ For educational and authorized use only.
 
 👤 Author:
 
+```
+
 p4cket-hunt3r
+
+```
 ```
 https://github.com/p4cket-hunt3r
 
