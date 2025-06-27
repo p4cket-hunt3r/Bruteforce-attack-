@@ -14,29 +14,13 @@ Created for **ethical hacking learning**, **red team practice**, and **interview
 ## 📜 Usage Instructions
 python required ⛓️‍💥
 
+---
 
 For Termux:
 
-This tool will automatically install all required dependencies before execution.
-If the automatic installation fails, please follow the steps below to install manually:
-```
-
-pkg install rust clang python python-pip -y
-pip install --upgrade pip setuptools wheel
-
-```
-
-**Then**
-
-```
-
-
-pip install --upgrade pip setuptools wheel
-pip install cryptography
-pip install paramiko
-
-
-```
+This tool not suitable for termux 
+so check out my page (github)There 
+is a new repository name : bruteforce 2 
 
 
 ---
